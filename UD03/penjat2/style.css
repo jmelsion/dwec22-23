@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+/* Indicamos que queremos ceñir las medidas de los elementos a su width y a su height */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #242333;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: 'Lato', sans-serif;
+    margin: 0;
+}
+
+.contenidor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.paraula_oculta {
+    align-items: center;
+    justify-content: center;
+    margin: 3px;
+    margin-bottom: 30px;
+}
+
+.lletra {
+    background-color: #444451;
+    height: 23px;
+    width: 23px;
+    margin: 3px;
+    text-align: center;
+}
+
+.lletra.fallada {
+    background-color: #f6131a;
+}
+
+.lletra.encertada {
+    background-color: rgb(53, 204, 7);
+}
+
+.lletra:not(.fallada):hover.lletra:not(.encertada):hover{
+    cursor: pointer;
+    transform: scale(1.2);
+}
+
+.paraula_oculta {
+    font-size: 2.5em;
+}
+
+.contenidorLletres {
+    display: flex;
+}
+
+.errorsOk {
+    display: flex;
+    margin-top: 30px;
+}
