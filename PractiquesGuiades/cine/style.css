@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+/* 1 Indicamos que queremos ceñir las medidas de los elementos a su width y a su height */
+* {
+    box-sizing: border-box;
+}
+
+/* 2 */
+body {
+    background-color: #242333;
+    display: flex; /* para tener los elementos dispuestos verticalmente */
+    flex-direction: column; /* por defecto es row (fila) */
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    /* aplicamos la fuente */
+    font-family: 'Lato', sans-serif;
+    /* quitamos cualquier margen del body */
+    margin: 0;
+}
+
+/* 3 Vamos con la clase contenidor-pelicula
+a nivel generla solo le damos un margen */
+.contenidor-pelicula {
+    margin: 20px 0; /* 20px top y botton, 0 izq i derecha */
+}
+
+/* 4 especificamos para el elemento select */
+.contenidor-pelicula select {
+    background-color: #fff;
+    border: 0; /* eliminamos el grosor del borde */
+    border-radius: 5px; /* suavizamos los bordes */
+    font-size: 14px;
+    margin-left: 10px; /* lo alejamos del título del select */
+    padding: 5px 15px 5px 15px; /* hacemos la "caja" más grande para que se lea mejor */
+
+    /* Si no se ve el efecto del padding: */
+    /* puede que no en todos los navegadores o sistemas operativos se vea igual */
+    /* si es así, hacemos esto, aunque se recomienda no utilizarlo */
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* 14 vamos a darle el toque final: perspectiva*/
+.contenidor {
+    perspective: 1000px;
+    /* de paso lingotaso, bajamos el texto del pie un poco */
+    margin-bottom: 30px;
+}
+
+/* 4 seient*/
+.seient {
+    background-color: #444451; /* le damos un tono gris oscuro*/
+    /* No vemos ningún asiento porque no hay contenido en el html,
+    ni tienen ancho ni alto */
+    height: 12px;
+    width: 15px;
+    /* ahora vemos una castaña de columna (todos los asientos estan juntos!)*/
+    margin: 3px; /* ya se ven algo separados! */
+    /* le vamos a dar forma a los asientos para que parezcan asientos...*/
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;    
+}
+
+/* 6 vamos a tratar con los colores de los asientos */
+
+.seient.seleccionat {
+    background-color: #6feaf6;
+    /* vemos que solo aparece un asiento así, que es en la leyenda
+    más adelante seremos capaces de clicar sobre un asiento y hacer 
+    que cambie de color/estado */
+}
+
+.seient.ocupat {
+    background-color: #fff;
+    /* aquí vemos más asientos, además del de la leyenda, dado que
+    le hemos dado esa clase a varios asientos */
+}
+
+/* 7 ahora vamos a crear espacios, para hacer la sala de cine
+un poco más "real", simulando pasillos.
+
+Entre la segunda y la tercera columna de asientos pondré un margen*/
+.seient:nth-of-type(2) {
+    margin-right: 18px;
+}
+
+/* ahora el "pasillo" ha de estar entre la sexta y séptima columna,
+o entre la segunda y tercera empezando por la derecha */
+.seient:nth-last-of-type(2) {
+    margin-left: 18px;
+}
+
+/* 8 vamos ahora a añadir efectos al pasar sobre los asientos (hover)
+treballarem sobre els seients NO ocupats (que son els que podem escollir) */
+.seient:not(.ocupat):hover {
+    cursor: pointer; /* cambiamos el tipo de cursor (una mano)*/
+    transform: scale(1.2); /* 1 es el valor por defecto, lo escalamos un poquito*/
+}
+
+/* 9 pero no queremos que este efecto pase en la leyenda */
+.llegenda .seient:not(.ocupat):hover {
+    cursor: default;
+    transform: scale(1); /* 1 es el valor por defecto */
+}
+
+/* 10 trabajemos más el área de la leyenda */
+.llegenda {
+    /* quiero darle un aspecto transparente
+    rgba: red, green, blue, alpha 
+    le pondremos una transparencia de 0.1 */
+    background-color: rgba(0, 0, 0, 0.1);
+    /* añadimos padding, 5px top y botton, 10px derecha e izq. */
+    padding: 5px 10px;
+    /* suavizamos el borde */
+    border-radius: 5px;
+    color: #777; /* oscurecemos los puntos y el texto*/
+    /* quitamos los puntos */
+    list-style-type: none;
+    /* queremos que la leyenda se vea horizontalmente */
+    display: flex;
+    /*arreglamos el texto/asientos de la leyenda, que se ven fatal ahora*/
+    justify-content: space-between;    
+}
+
+/* 11 para acabar de perfilar la leyenda, vamos a los list items */
+.llegenda li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+}
+
+/* 12 y para rematar este apartado, aún retocamos los small para que queden mejor */
+.llegenda li small {
+    margin-left: 2px;
+}
+
+/* 5 clase fila*/
+/* tenemos 6 filas pero vemos todos los asientos en una columna, hay que 
+decirle que las alinee horizontalmente*/
+.fila {
+    display: flex;
+}
+
+/* 13 vamos a añadir la pantalla! 
+recordemos que tenemos la clase pantalla */
+.pantalla {
+    background-color: #fff;
+    /* todavía no vemos nada, pues no hay contenido, no altura ni ancho... */
+    height: 70px;
+    width: 100%; /* ocupará el 100% de su contenedor */
+    /* añadimos un margen */
+    margin: 15px 0;
+    /* vamos a darle más vidilla a nuestra pantalla */
+    /* la giramos sobre el eje X 45 grados, la veremos más estrecha */
+    transform: rotateX(-45deg);
+    /* y encendemos la pantalla!!*/
+    box-shadow: 0 3px 10px rgba(255, 255, 255, 0.7);
+}
+
+/* 15 Por último, vamos a formatear un poco el texto del pie de página*/
+p.text {
+    margin: 5px 0;
+}
+p.text span {
+    color: #6feaf6;
+}
+
+

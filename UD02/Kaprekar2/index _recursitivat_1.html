@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaprekar</title>
+</head>
+<body>
+    <script>
+
+        //Pedimos al usuario que introduzca el número y lo capturamos (será una cadena).
+        const promptText = "Elije cualquier número de cuatro dígitos que esté formado por al menos dos dígitos diferentes, incluido cero.";
+        let numero = prompt(promptText);
+
+        console.log("Número inicial: " + numero);
+        
+        //Llamamos a la función kaprekar, que no es un alquiler de coches,
+        //lo que hace es utilizar recursividad para obtener el número de
+        //Kaprekar pasándole como parámetro el número tratar.
+        kaprekar(numero, 0);
+        
+        function kaprekar(numero, pasos) {
+
+            //Creamos un array para poder tratar el número dígito a dígito.
+            let arrNumero = new Array();
+
+            //Variables para guardar los números a restar.
+            let mayor, menor;
+
+            //Añadimos el número al array. Automáticamente trata el número (que es una cadena)
+            //como un array.
+/*             for(i = 0; i < numero.length; i++) {
+                arrNumero[i] = numero[i];
+            } */
+
+/*             for(i = 0; i < numero.length; i++) {
+                arrNumero[i] = numero.charAt(i);
+            } */
+
+            for(i = 0; i < numero.length; i++) {
+                arrNumero.push(numero.charAt(i));
+            }
+
+            //Podemso ordenar el array (quedará de menor a mayor)
+            arrNumero.sort();
+
+            //Guardamos en la variable menor el contenido del array "unido".
+            menor = uneDigitos(arrNumero);
+
+            //Le damos la vuelta la array y por lo tanto al número.
+            //arrNumero.reverse();
+            arrNumero = daleLaVuelta(arrNumero);
+
+            //Guardamos en la variable mayor el contenido del array
+            mayor = uneDigitos(arrNumero);
+
+            //Convertimos las cadenas en números (no sería necesario).
+            mayor = parseInt(mayor);
+            menor = parseInt(menor);
+           
+            //Realizamos la resta.
+            numero = mayor - menor;
+
+            //Mostramos el resultado
+            console.log(mayor + " - " + menor + " = " + numero);
+
+            pasos++;
+
+            //Evitamos bucles infinitos.
+            if(pasos > 7) {
+                console.log("Número de pasos superado, algo no está bien...");
+                return;
+            }
+
+            //Si el número obtenido es el de Kaprekar, paramos.
+            if (numero === 6174) {
+                console.log("Pasos realizados: " + pasos);
+                return;
+            }
+
+            //Utilizamos recursividad con el nuevo número.
+            return kaprekar(formateaNumero(numero.toString()), pasos);
+        }
+
+        //Devuelve una cadena formada con los elementos del array
+        //pasado por parámetro tomados como carácteres desde el de
+        //menor índice hasta el último.
+        function uneDigitos(arrNumero) {
+
+            let cadena = "";
+
+            for(i = 0; i < arrNumero.length; i++) {
+                cadena += arrNumero[i];
+            }
+
+            return cadena;
+        }
+
+        //Devuelve un array con los elementos cambiados simétricamente
+        //respecto al array pasado por parámetro.
+        function daleLaVuelta(arrNumero) {
+            
+            arrAux = new Array(arrNumero.length);
+
+            for(j = 0; j < arrNumero.length; j++) {
+
+                arrAux[arrNumero.length - 1 - j] = arrNumero[j];
+            }
+
+            return arrAux;
+        }
+
+        //Añade "ceros" delante de una cadena que representa
+        //un valor numérico que necesáriamente ha de tener
+        //cuatro dígitos.
+        function formateaNumero(numero) {
+
+            if(numero.length == 3) {
+                numero = "0" + numero;
+            }
+            else if(numero.length == 2) {
+                numero = "00" + numero;
+            }
+            else if(numero.length == 1) {
+                numero = "000" + numero;
+            }
+
+            return numero;
+        }
+
+    </script>
+</body>
+</html>

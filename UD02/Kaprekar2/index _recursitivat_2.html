@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaprekar</title>
+</head>
+<body>
+    <script>
+
+        //Pedimos al usuario que introduzca el número y lo capturamos (será una cadena).
+        const promptText = "Elije cualquier número de cuatro dígitos que esté formado por al menos dos dígitos diferentes, incluido cero.";
+        let numero = prompt(promptText);
+
+        console.log("Número inicial: " + numero);
+        
+        //Llamamos a la función kaprekar, que no es un alquiler de coches,
+        //lo que hace es utilizar recursividad para obtener el número de
+        //Kaprekar pasándole como parámetro el número tratar.
+        kaprekar(numero, 0);
+        
+        function kaprekar(numero, pasos) {
+
+            //Creamos un array para poder tratar el número dígito a dígito.
+            let arrNumero = new Array();
+
+            //Variables para guardar los números a restar.
+            let mayor, menor;
+
+            //Añadimos el número al array. Automáticamente trata el número (que es una cadena)
+            //como un array.
+            arrNumero.push(...numero);
+
+            //Podemso ordenar el array (quedará de menor a mayor)
+            arrNumero.sort();
+
+            //Guardamos en la variable menor el contenido del array "unido".
+            menor = arrNumero.join("");            
+
+            //Le damos la vuelta la array y por lo tanto al número.
+            arrNumero.reverse();
+
+            //Guardamos en la variable mayor el contendio del array
+            mayor = arrNumero.join("");
+
+            //Convertimos las cadenas en números (no sería necesario).
+            mayor = parseInt(mayor);
+            menor = parseInt(menor);
+            
+            //Realizamos la resta.
+            numero = mayor - menor;
+            
+            //Mostramos el resultado
+            console.log(mayor + " - " + menor + " = " + numero.toString());
+
+            pasos++;
+
+            //Evitamos bucles infinitos.
+            if(pasos > 7) {
+                console.log("Número de pasos superado, algo no está bien...");
+                return;
+            }
+
+            //Si el número obtenido es el de Kaprekar, paramos.
+            if (numero === 6174) {
+                console.log("Pasos realizados: " + pasos);
+                return;
+            }
+
+            //Utilizamos recursividad con el nuevo número.
+            return kaprekar(formateaNumero(numero.toString()), pasos);
+        }
+
+        function formateaNumero(numero) {
+
+            if(numero.length == 3) {
+                numero = "0" + numero;
+            }
+            else if(numero.length == 2) {
+                numero = "00" + numero;
+            }
+            else if(numero.length == 1) {
+                numero = "000" + numero;
+            }
+
+            return numero;
+        }
+
+    </script>
+</body>
+</html>

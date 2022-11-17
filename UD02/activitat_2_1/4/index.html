@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activitat 2.1 - EXERCICI 4</title>
+</head>
+<body>
+    <!--
+    Crea un programa que generi un llista d’hores que vagin des de les 9 fins les 21:30 de 30 min en 30 min
+    
+    Enlloc de emprar alert, utilitzeu la instrucció:
+
+    document.write(“Missatge”)
+    
+    que mostra les dades en el HTML.
+    
+    Tindràs que emprar un for per les hores i una variable booleana que anirà canviant a true o false si es hora en punt o i mitja.       
+    
+    Comenta el codi amb els comentaris oportuns, autor i nom de l’exercici.
+    -->    
+    <script>
+
+        //Donem una capçelera a la pàgina
+        document.write("<h5>Llista d'hores</h5>")
+
+        //Declaració de variables
+        let enPunto = true; //En dirà quan tractarem amb una hora en punt.
+        let hora = 9; //Indica l'hora que tractem. s'incrementarà.
+        
+        //Bucle per anar pintant la llista amb les hores i hores i mitja.
+        //Necessitem que iteri 26 vegades.
+        for(i = 0; i <= 25; i++) {
+
+            //Consultem si l'hora és en punt o no i pintem en conseqüència.
+            if(enPunto) {
+                document.write("<h6>")
+                document.write(hora + ":00");
+                document.write("<br>"); //Provoquem el salt de linia
+                document.write("</h6>")
+            }
+            else {
+                document.write("<h6>")
+                document.write(hora + ":30");
+                document.write("<br>"); //Provoquem el salt de linia
+                document.write("</h6>")                
+
+                //Incrementem l'hora després de les "i mitja"
+                hora++;
+            }
+
+            //Canviem el valor de la booleana enPunto.
+            enPunto = !enPunto;
+        }
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activitat 2 Xec Melia</title>
+
+    <style>
+        *{  font-family: Georgia, 'Times New Roman', Times, serif;}
+        
+    </style>
+
+</head>
+<body>
+
+    <!-- EXERCISI 1 -->
+    <h1>Exercisi 1</h1>
+    <h3>Crea un programa en el que creis 5 variables numèriques (enter, decimal, científic, octal i hexadecimal).</h3>
+
+    <p id="numEntero"></p>
+    <p id="numDecimal"></p>
+    <p id="numCientific"></p>
+    <p id="numOctal"></p>
+    <p id="numHexadecimal"></p>
+    <br>
+
+    <script>
+
+        // ENTER
+        let int = 726;
+        let numEntero = document.getElementById("numEntero");
+        numEntero.innerHTML = "Enter: " + int;
+
+        // DECIMAL
+        let decimal = 3.75;
+        let numDecimal = document.getElementById("numDecimal");
+        numDecimal.innerHTML = "Decimal: " + decimal;
+
+        // CIENTIFIC
+        let cientific = 3e7;  //  Si el poses en decimal es traspasara sol a decimal
+        let numCientific = document.getElementById("numCientific");
+        numCientific.innerHTML = "Cientific: " + cientific;
+
+        // OCTAL
+        let octal = 0327;  //  Posar un 0 devant per a indicar que es OCTAL
+        let numOctal = document.getElementById("numOctal");
+        numOctal.innerHTML = "Octal: " + octal;
+
+        // HEXADECIMAL
+        let hex = 0xA3F2; 
+        let numHexadecimal = document.getElementById("numHexadecimal");
+        numHexadecimal.innerHTML = "Hexadecimal: " + hex;
+
+    </script>
+
+    <!-- EXERCISI 2 -->
+    <h1>Exercisi 2</h1>
+    <h3>Crea un programa que crei 4 variables de tipus cadena amb els següents valors, “Hola”, “7”, “13” i “Adeu”.</h3>
+
+    <p id="strCaracters"></p>
+    <br>
+
+    <script>
+
+        // ENTER
+        let strHola = "Hola";
+        let num7 = 7;
+        let num13 = 13;
+        let strAdeu = "Adeu";
+
+        let strCaracters = document.getElementById("strCaracters");
+        strCaracters.innerHTML = "1: " + strHola + "<br>2: " + num7 + "<br>3: " + num13 + "<br>4: " + strAdeu;
+
+        console.log("EXERCISI 2 CONSOLE.LOG EXERCISIS:");
+        console.log("Aquesta frase te 'cometes simples'");
+        console.log(strHola + "\n" + num7 + "\n" + num13 + "\n" + strAdeu);
+        console.log(num7+num13);
+        console.log(strHola+num7+num13+strAdeu);
+
+        // EXERCISI 2 FET PER XEC MELIÀ TROBAT
+
+    </script>
+
+    <!-- EXERCISI 3 -->
+    <h1>Exercisi 3</h1>
+    <h3>Crea un programa que demani a l'usuari que introdueixi una edat i mostri el següent missatge (alert o console.log) en funció del número introduït.</h3>
+
+    <p>Alert al cargar la pàgina</p>
+    <br>
+    
+    <script>
+        let edat = 0;
+        let valor;
+        let frase = "Eres un ";
+
+        edat = prompt("Introduce tu edad: ")
+
+        if (edat <= 12 && edat > 0){
+            valor = "niño";
+        }else if(edat > 12 && edat <= 26){
+            valor = "joven";
+        }
+        else if(edat > 27 && edat <= 60){
+            valor = "adulto";
+        }else if (edat > 60 && edat <= 120){
+            valor = "jubilao";
+        }
+        else{
+            frase = "No has introducido un valor valido. Recarga la pàgina para saber lo que eres"
+            valor = " "
+        }
+
+        alert(frase + valor)    
+
+        // EXERCISI 3 FET PER XEC MELIÀ TROBAT
+        
+    </script>
+
+    <!-- EXERCISI 4 -->
+
+    <h1>Exercisi 4</h1>
+    <h3>Crea un programa que generi un llista d’hores que vagin des de les 9 fins les 21:30 de 30 min en 30 min.</h3>
+
+    <script>
+
+        let horas = 9;
+        let minutos = 0;
+
+        for (i = 0 ; i < 13; i++){
+            
+            // LES HORES SEMPRE SUMARAN +1 I ELS MINUTS ALTERNARAN ENTRE +30 I -30
+
+            minutos = minutos + 30;
+            document.write(horas + ":" + minutos + "h<br>");
+            minutos = minutos - 30 ;
+            horas= horas+1;
+
+            // CHAPUSA PER A ACABAR A LES 21:30 (sense aquest IF, acabava a les 22:00h)
+            if (horas != 22){
+                document.write(horas + ":" + minutos + "0h<br>");
+            }                                  
+        }
+
+        // EXERCISI 4 FET PER XEC MELIÀ TROBAT
+        
+    </script>
+    <br>
+
+
+    <!-- EXERCISI 5 -->
+
+    <h1>Exercisi 5</h1>
+    <h3>Crea un control parental per a que no es pugui entrar a una pàgina.</h3>
+
+    <p>La contrasenya era KENOBI</p>
+
+    <script>
+        let introduit;
+        introduit = prompt("Introduce la contraseña\n(la contraseña es kenobi)");
+        let resposta = "kenobi";
+
+        while(introduit != resposta){
+            introduit = prompt("Introduce la contraseña\n(la contraseña es kenobi)");        
+        }               
+        
+    </script>   
+
+</body>
+</html>
